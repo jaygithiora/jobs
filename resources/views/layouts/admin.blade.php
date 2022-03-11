@@ -36,7 +36,7 @@
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <!--<img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">-->
-    <img src="{{asset('images/my_loader.gif')}}" alt="AdminLTELogo" height="160">
+    <img src="{{asset('images/my_loader.gif')}}" alt="Logo" height="160">
 
   </div>
 
@@ -164,25 +164,42 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      <!-- Account Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+            <div class="image">
+                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" height='30' alt="User Image">
+            </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="{{url('admin/profile')}}" class="dropdown-item">
+                <i class="fas fa-envelope mr-2"></i> Profile
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ route('logout') }}" class="dropdown-item"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                <i class="fas fa-users mr-2"></i> Logout
+            </a>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
     </ul>
   </nav>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('admin')}}" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('images/favicon.png')}}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">{{ config('app.name', 'Laravel') }}</span>
     </a>
 
@@ -224,6 +241,65 @@
               </p>
             </a>
           </li>
+          <li class="nav-item {{\Request::is('admin/schools/*')||\Request::is('admin/schools')?'menu-open':''}}">
+            <a href="#" class="nav-link {{\Request::is('admin/schools/*') || \Request::is('admin/schools')?'active':''}}">
+              <i class="nav-icon fas fa-school"></i>
+              <p>
+                Schools
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/schools')}}" class="nav-link {{\Request::is('admin/schools')?'active':''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Schools</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Top Navigation + Sidebar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/boxed.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Boxed</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/fixed-sidebar.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/fixed-topnav.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Navbar</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/fixed-footer.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fixed Footer</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Collapsed Sidebar</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item {{\Request::is('admin/settings/*')?'menu-open':''}}">
             <a href="#" class="nav-link {{\Request::is('admin/settings/*')?'active':''}}">
@@ -241,9 +317,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{url('admin/settings/school/types')}}" class="nav-link {{\Request::is('admin/settings/school/types')?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
+                  <p>School Types</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -922,11 +998,6 @@
     </div>
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
