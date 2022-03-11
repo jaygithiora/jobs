@@ -1,0 +1,19 @@
+/*body {
+    font-family: "Poppins";
+}
+*/
+
+.main {
+    background-image: url('../images/student.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dark {
+    min-height: 80vh;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.invalid-feedback {
+    display: block;
+}
