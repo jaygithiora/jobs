@@ -17,6 +17,14 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
+    public function schools(){
+        return view('admin.schools');
+    }
+
+    public function schoolTypes(){
+        return view('admin.school_types');
+    }
+
     public function countries(){
         return view('admin.countries');
     }
